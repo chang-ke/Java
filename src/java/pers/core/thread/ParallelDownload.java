@@ -39,10 +39,7 @@ public class ParallelDownload {
             if (executor.isTerminated()) {
                 byte[] data = new byte[size];
                 list.forEach((thread) -> {
-                    for (int i = thread.start; i <= thread.end; ++i) {
-                        data[i] = thread.data[i - thread.start];
-                    }
-                    // System.arraycopy(thread.data, 0, data, thread.start, thread.end);
+                    System.arraycopy(thread.data, 0, data, thread.start, thread.end - thread.start);
                     System.out.printf("%d %d %d\n", thread.start, thread.end, size);
                 });
                 File dir = new File("./"); // 整个项目根目录
